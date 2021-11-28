@@ -1,0 +1,1366 @@
+{
+	"info": {
+		"_postman_id": "4e6fddfc-c41e-4f1e-a98d-db844c74b40e",
+		"name": "Account Management API - Level 1",
+		"description": "Below are the definitions of different test scenarios that ensure the correct behavior of the Account Management API.\n\nCheck out the **test requests and expected responses in the right sidebar**.\n\n# Test Scenarios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Scenario 1: Balance Operations",
+			"item": [
+				{
+					"name": "Submit amount",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9910004c-5392-4061-974c-9f93de9e1dc2",
+								"exec": [
+									"pm.test(\"Submit amount\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Transaction-Id",
+								"value": "7943f961-a733-43cf-ba3d-905a5856f6da",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"account_id\": \"a40bcc03-6f39-418c-ad0b-97e14f522ec1\",\n\t\"amount\" : 7\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/amount",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"amount"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Submit amount",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Transaction-Id",
+										"type": "text",
+										"value": "7943f961-a733-43cf-ba3d-905a5856f6da"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"account_id\": \"a40bcc03-6f39-418c-ad0b-97e14f522ec1\",\n\t\"amount\" : 7\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/amount",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"amount"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": " "
+						}
+					]
+				},
+				{
+					"name": "Return account balance",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "04dd748e-6d94-440b-bac4-6b517ecacf91",
+								"exec": [
+									"pm.test(\"Return account balance\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.balance).to.eql(7);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/balance/a40bcc03-6f39-418c-ad0b-97e14f522ec1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"balance",
+								"a40bcc03-6f39-418c-ad0b-97e14f522ec1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Return account balance",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/balance/a40bcc03-6f39-418c-ad0b-97e14f522ec1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"balance",
+										"a40bcc03-6f39-418c-ad0b-97e14f522ec1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n\t\"balance\": 7\n}"
+						}
+					]
+				},
+				{
+					"name": "Return the same account balance",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "04dd748e-6d94-440b-bac4-6b517ecacf91",
+								"exec": [
+									"pm.test(\"Return the same account balance\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.balance).to.eql(7);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/balance/a40bcc03-6f39-418c-ad0b-97e14f522ec1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"balance",
+								"a40bcc03-6f39-418c-ad0b-97e14f522ec1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Return the same account balance",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/balance/a40bcc03-6f39-418c-ad0b-97e14f522ec1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"balance",
+										"a40bcc03-6f39-418c-ad0b-97e14f522ec1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n\t\"balance\": 7\n}"
+						}
+					]
+				},
+				{
+					"name": "Submit more amount",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9910004c-5392-4061-974c-9f93de9e1dc2",
+								"exec": [
+									"pm.test(\"Submit more amount\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Transaction-Id",
+								"value": "3bc387f1-f46e-45b1-9ab7-4f6840181f19",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"account_id\": \"a40bcc03-6f39-418c-ad0b-97e14f522ec1\",\n\t\"amount\" : 13\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/amount",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"amount"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Submit more amount",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Transaction-Id",
+										"value": "3bc387f1-f46e-45b1-9ab7-4f6840181f19",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"account_id\": \"a40bcc03-6f39-418c-ad0b-97e14f522ec1\",\n\t\"amount\" : 13\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/amount",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"amount"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": " "
+						}
+					]
+				},
+				{
+					"name": "Return updated balance",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "04dd748e-6d94-440b-bac4-6b517ecacf91",
+								"exec": [
+									"pm.test(\"Return updated balance\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.balance).to.eql(20);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/balance/a40bcc03-6f39-418c-ad0b-97e14f522ec1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"balance",
+								"a40bcc03-6f39-418c-ad0b-97e14f522ec1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Return updated balance",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/balance/a40bcc03-6f39-418c-ad0b-97e14f522ec1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"balance",
+										"a40bcc03-6f39-418c-ad0b-97e14f522ec1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n\t\"balance\": 20\n}"
+						}
+					]
+				},
+				{
+					"name": "Submit negative amount",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9910004c-5392-4061-974c-9f93de9e1dc2",
+								"exec": [
+									"pm.test(\"Submit negative amount\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Transaction-Id",
+								"value": "1f80bf52-5f0b-41d7-95f9-6e61a1734298",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"account_id\": \"a40bcc03-6f39-418c-ad0b-97e14f522ec1\",\n\t\"amount\" : -10\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/amount",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"amount"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Submit negative amount",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Transaction-Id",
+										"type": "text",
+										"value": "1f80bf52-5f0b-41d7-95f9-6e61a1734298"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"account_id\": \"a40bcc03-6f39-418c-ad0b-97e14f522ec1\",\n\t\"amount\" : -10\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/amount",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"amount"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": " "
+						}
+					]
+				},
+				{
+					"name": "Return reducted updated balance",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "04dd748e-6d94-440b-bac4-6b517ecacf91",
+								"exec": [
+									"pm.test(\"Return reducted updated balance\", function () {",
+									"    pm.response.to.have.status(200);",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.balance).to.eql(10);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/balance/a40bcc03-6f39-418c-ad0b-97e14f522ec1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"balance",
+								"a40bcc03-6f39-418c-ad0b-97e14f522ec1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Reducted updated balance",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/balance/a40bcc03-6f39-418c-ad0b-97e14f522ec1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"balance",
+										"a40bcc03-6f39-418c-ad0b-97e14f522ec1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": null,
+							"cookie": [],
+							"body": "{\n    \"balance\": 10\n}"
+						}
+					]
+				}
+			],
+			"description": "This test suite ensures correct behavior of updating and fetching account balance.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b4897a3b-a2a4-4c9e-bfae-56690f1cf4f0",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "60d15d74-4f0c-466c-94ed-51a99ea44a8b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Scenario 2: Invalid Requests",
+			"item": [
+				{
+					"name": "Reject when wrong HTTP method used",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9910004c-5392-4061-974c-9f93de9e1dc2",
+								"exec": [
+									"pm.test(\"Reject when wrong HTTP method used\", function () {",
+									"    pm.response.to.have.status(405);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"account_id\": \"a40bcc03-6f39-418c-ad0b-97e14f522ec1\",\n\t\"amount\" : 10\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/amount",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"amount"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Reject when wrong HTTP method used",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"account_id\": \"a40bcc03-6f39-418c-ad0b-97e14f522ec1\",\n    \"amount\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/amount",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"amount"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Method Not Allowed",
+							"code": 405,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": " "
+						}
+					]
+				},
+				{
+					"name": "Reject when wrong content type used",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9910004c-5392-4061-974c-9f93de9e1dc2",
+								"exec": [
+									"pm.test(\"Reject when wrong content type used\", function () {",
+									"    pm.response.to.have.status(415);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/xml"
+							},
+							{
+								"key": "Transaction-Id",
+								"value": "59b2917e-6407-40eb-8fbf-287435fcd6f8",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"account_id\": \"a40bcc03-6f39-418c-ad0b-97e14f522ec1\",\n\t\"amount\" : 13\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/amount",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"amount"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Reject when wrong content type used",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Transaction-Id",
+										"type": "text",
+										"value": "59b2917e-6407-40eb-8fbf-287435fcd6f8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"account_id\": \"a40bcc03-6f39-418c-ad0b-97e14f522ec1\",\n\t\"amount\" : 13\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/amount",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"amount"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Unsupported Media Type",
+							"code": 415,
+							"_postman_previewlanguage": null,
+							"header": [],
+							"cookie": [],
+							"body": " "
+						}
+					]
+				},
+				{
+					"name": "Reject when no account-id passed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9910004c-5392-4061-974c-9f93de9e1dc2",
+								"exec": [
+									"pm.test(\"Reject when no account-id passed\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Transaction-Id",
+								"value": "6eadf15c-fc8a-4584-b708-31a56df13563",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"amount\" : 13\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/amount",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"amount"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Reject when no account-id passed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Transaction-Id",
+										"type": "text",
+										"value": "6eadf15c-fc8a-4584-b708-31a56df13563"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"amount\" : 13\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/amount",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"amount"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": " "
+						}
+					]
+				},
+				{
+					"name": "Reject when no amount passed",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9910004c-5392-4061-974c-9f93de9e1dc2",
+								"exec": [
+									"pm.test(\"Reject when no account-id passed\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Transaction-Id",
+								"value": "6eadf15c-fc8a-4584-b708-31a56df13563",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"account_id\": \"a40bcc03-6f39-418c-ad0b-97e14f522ec1\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/amount",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"amount"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Reject when no amount passed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Transaction-Id",
+										"type": "text",
+										"value": "6eadf15c-fc8a-4584-b708-31a56df13563"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"account_id\": \"a40bcc03-6f39-418c-ad0b-97e14f522ec1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/amount",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"amount"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": " "
+						}
+					]
+				},
+				{
+					"name": "Reject when wrong amount type",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9910004c-5392-4061-974c-9f93de9e1dc2",
+								"exec": [
+									"pm.test(\"Reject when wrong amount type\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Transaction-Id",
+								"value": "da0b5092-8f41-4774-87be-16cc3a778549",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"account_id\": \"a40bcc03-6f39-418c-ad0b-97e14f522ec1\",\n\t\"amount\" : \"dafadf\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/amount",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"amount"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Reject when wrong amount type",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Transaction-Id",
+										"type": "text",
+										"value": "da0b5092-8f41-4774-87be-16cc3a778549"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"account_id\": \"a40bcc03-6f39-418c-ad0b-97e14f522ec1\",\n\t\"amount\" : \"dafadf\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/amount",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"amount"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": " "
+						}
+					]
+				},
+				{
+					"name": "Reject when wrong account-id type",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9910004c-5392-4061-974c-9f93de9e1dc2",
+								"exec": [
+									"pm.test(\"Reject when wrong account-id type\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Transaction-Id",
+								"value": "da439f4b-c969-4445-b296-1dd4cc93477e",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"account_id\": 5,\n\t\"amount\" : 10\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/amount",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"amount"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Reject when wrong account-id type",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Transaction-Id",
+										"type": "text",
+										"value": "da439f4b-c969-4445-b296-1dd4cc93477e"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"account_id\": 5,\n\t\"amount\" : 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/amount",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"amount"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": " "
+						}
+					]
+				},
+				{
+					"name": "Return NOT FOUND when no request account found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "04dd748e-6d94-440b-bac4-6b517ecacf91",
+								"exec": [
+									"pm.test(\"Return NOT FOUND when no request account found\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/balance/4a53a8f5-036c-4851-a86a-401abd01e1a7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"balance",
+								"4a53a8f5-036c-4851-a86a-401abd01e1a7"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Return NOT FOUND when no request account found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/balance/4a53a8f5-036c-4851-a86a-401abd01e1a7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"balance",
+										"4a53a8f5-036c-4851-a86a-401abd01e1a7"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": null,
+							"header": null,
+							"cookie": [],
+							"body": " "
+						}
+					]
+				}
+			],
+			"description": "This test suite ensures graceful handling of malformed requests.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "55c77046-3d6d-4a4e-b940-13ba95502611",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d4ac46f0-c546-4f8f-ba44-9d71d026fd13",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
